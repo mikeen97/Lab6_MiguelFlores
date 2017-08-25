@@ -20,7 +20,7 @@ public class Casas extends Lugares {
 
     @Override
     public String toString() {
-        return "Casas{" + '}';
+        return "Casas ";
     }
 
 }
