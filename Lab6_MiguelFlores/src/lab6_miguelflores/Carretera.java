@@ -9,13 +9,10 @@ package lab6_miguelflores;
  *
  * @author Miguel Flores
  */
-public class Lab6_MiguelFlores {
+public class Carretera {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
- 
-    }
+
     
+    
+
 }
