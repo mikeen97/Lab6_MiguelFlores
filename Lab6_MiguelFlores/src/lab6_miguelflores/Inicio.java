@@ -860,54 +860,32 @@ public class Inicio extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         ListLugares.remove(tb_lugares.getSelectedRow());
+        JOptionPane.showMessageDialog(null, "Solo elimino de el arrayList, no actualiza la tabla");
 
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         DefaultTreeModel modelo = (DefaultTreeModel) jt_carreteras.getModel();
-        DefaultMutableTreeNode root = (DefaultMutableTreeNode) modelo.getRoot();
-        root.removeAllChildren();
-        jt_carreteras.setModel(modelo);
+        DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) modelo.getRoot();
         int centinela = -1;
-        DefaultMutableTreeNode root2 = null;
-        DefaultMutableTreeNode root3 = null;
+        for (Restaurantes r : ListRestaurantes) {
+            for (int i = 0; i < raiz.getChildCount(); i++) {
+                if (raiz.getChildAt(i).toString().equals(r.getCategoria())) {
+                    DefaultMutableTreeNode p = new DefaultMutableTreeNode(r.getCategoria());
+                    ((DefaultMutableTreeNode) raiz.getChildAt(i)).add(p);
+                    centinela = 1;
+                }
+            }
+            if (centinela == -1) {
+                DefaultMutableTreeNode n = new DefaultMutableTreeNode(r.getCategoria());
+                DefaultMutableTreeNode p = new DefaultMutableTreeNode(r.getCategoria());
+                n.add(p);
+                raiz.add(n);
 
-        for (Canchas t : ListCanchas) {
-            root2 = new DefaultMutableTreeNode(t.getCategoria());
-            root3 = new DefaultMutableTreeNode(t.getNombre());
+            }
+            modelo.reload();
 
         }
-
-        for (int i = 0; i < root.getChildCount(); i++) {
-
-            if (root.getChildAt(i).toString().equalsIgnoreCase("chino")) {
-                root2.add(root3);
-                root.add(root2);
-                centinela = 1;
-            }
-            if (root.getChildAt(i).toString().equalsIgnoreCase("Comida Rapida")) {
-                root2.add(root3);
-                root.add(root2);
-                centinela = 1;
-            }
-            if (root.getChildAt(i).toString().equalsIgnoreCase("Italiano")) {
-                root2.add(root3);
-                root.add(root2);
-                centinela = 1;
-            }
-            if (root.getChildAt(i).toString().equalsIgnoreCase("Mexicano")) {
-                root2.add(root3);
-                root.add(root2);
-                centinela = 1;
-            }
-        }
-        if (centinela == -1) {
-            DefaultMutableTreeNode n = new DefaultMutableTreeNode(root2);
-            DefaultMutableTreeNode s = new DefaultMutableTreeNode(root3);
-            n.add(s);
-            root.add(n);
-        }
-        modelo.reload();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
