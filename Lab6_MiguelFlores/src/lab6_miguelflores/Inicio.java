@@ -867,22 +867,25 @@ public class Inicio extends javax.swing.JFrame {
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         DefaultTreeModel modelo = (DefaultTreeModel) jt_carreteras.getModel();
         DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) modelo.getRoot();
-        int centinela = -1;
-        for (Restaurantes r : ListRestaurantes) {
+        raiz.removeAllChildren();
+        for (Restaurantes lugar : ListRestaurantes) {
+            int prueba = -1;
             for (int i = 0; i < raiz.getChildCount(); i++) {
-                if (raiz.getChildAt(i).toString().equals(r.getCategoria())) {
-                    DefaultMutableTreeNode p = new DefaultMutableTreeNode(r.getCategoria());
+                if (raiz.getChildAt(i).toString().equals(lugar.getCategoria())) {
+                    JOptionPane.showMessageDialog(null, "entro al if 1");
+                    DefaultMutableTreeNode p = new DefaultMutableTreeNode(lugar.getCategoria());
                     ((DefaultMutableTreeNode) raiz.getChildAt(i)).add(p);
-                    centinela = 1;
+                    prueba = 1;
                 }
             }
-            if (centinela == -1) {
-                DefaultMutableTreeNode n = new DefaultMutableTreeNode(r.getCategoria());
-                DefaultMutableTreeNode p = new DefaultMutableTreeNode(r.getCategoria());
-                n.add(p);
-                raiz.add(n);
-
+            if (prueba == -1) {
+                JOptionPane.showMessageDialog(null, "entro al if 1");
+                DefaultMutableTreeNode nueva_raiz = new DefaultMutableTreeNode(lugar.getCategoria());
+                DefaultMutableTreeNode p = new DefaultMutableTreeNode(lugar.getCategoria());
+                nueva_raiz.add(p);
+                raiz.add(nueva_raiz);
             }
+
             modelo.reload();
 
         }
@@ -890,16 +893,27 @@ public class Inicio extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         DefaultTreeModel modelo = (DefaultTreeModel) jt_carreteras.getModel();
-        DefaultMutableTreeNode root = (DefaultMutableTreeNode) modelo.getRoot();
-        root.removeAllChildren();
-        for (Canchas t : ListCanchas) {
-            DefaultMutableTreeNode root2 = new DefaultMutableTreeNode(t.getCategoria());
-            DefaultMutableTreeNode root3 = new DefaultMutableTreeNode(t.getNombre());
-            root2.add(root3);
-            root.add(root2);
+        DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) modelo.getRoot();
+        raiz.removeAllChildren();
+        for (Canchas cancha : ListCanchas) {
+            int prueba = -1;
+            for (int i = 0; i < raiz.getChildCount(); i++) {
+                if (raiz.getChildAt(i).toString().equals(cancha.getCategoria())) {
+                    DefaultMutableTreeNode p = new DefaultMutableTreeNode(cancha.getEstado());
+                    ((DefaultMutableTreeNode) raiz.getChildAt(i)).add(p);
+                    prueba = 1;
+                }
+            }
+            if (prueba == -1) {
+                DefaultMutableTreeNode nueva_raiz = new DefaultMutableTreeNode(cancha.getCategoria());
+                DefaultMutableTreeNode p = new DefaultMutableTreeNode(cancha.getEstado());
+                nueva_raiz.add(p);
+                raiz.add(nueva_raiz);
+            }
+
+            modelo.reload();
+
         }
-        modelo.reload();
-        jt_carreteras.setModel(modelo);
     }//GEN-LAST:event_jButton10ActionPerformed
 
     /**
