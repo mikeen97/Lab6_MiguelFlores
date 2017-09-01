@@ -861,7 +861,7 @@ public class Inicio extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         ListLugares.remove(tb_lugares.getSelectedRow());
         JOptionPane.showMessageDialog(null, "Solo elimino de el arrayList, no actualiza la tabla");
-
+        
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -872,14 +872,12 @@ public class Inicio extends javax.swing.JFrame {
             int prueba = -1;
             for (int i = 0; i < raiz.getChildCount(); i++) {
                 if (raiz.getChildAt(i).toString().equals(lugar.getCategoria())) {
-                    JOptionPane.showMessageDialog(null, "entro al if 1");
                     DefaultMutableTreeNode p = new DefaultMutableTreeNode(lugar.getCategoria());
                     ((DefaultMutableTreeNode) raiz.getChildAt(i)).add(p);
                     prueba = 1;
                 }
             }
             if (prueba == -1) {
-                JOptionPane.showMessageDialog(null, "entro al if 1");
                 DefaultMutableTreeNode nueva_raiz = new DefaultMutableTreeNode(lugar.getCategoria());
                 DefaultMutableTreeNode p = new DefaultMutableTreeNode(lugar.getCategoria());
                 nueva_raiz.add(p);
